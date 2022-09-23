@@ -1,0 +1,60 @@
+
+<div class="panel panel-default">
+
+    <button type="button" class="btn btn-primary" (click)="changeToAddProduct()">Add Product</button>
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th>Id</th>
+  
+          <th>Name</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of listProduct; let i = index; ">
+          <td>{{product.productId}}</td>
+          <td>{{product.productName}}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-lg editBtn" (click)="editProduct(product)" >Edit</button>
+                        
+            <button type="button" class="btn btn-primary btn-lg deleteBtn" (click)="removeProduct(product)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+     <form action="" method="POST" class="form-inline" role="form" *ngIf="isAddForm"> 
+    
+        <div class="form-group">
+            <label class="sr-only" for="">Add Product</label><br/>
+            <p>Product Name: <input [(ngModel)]="currentProduct.productName" type="text" class="form-control" id="" placeholder="Input field"  [ngModelOptions]="{standalone: true}"></p>
+            <p>Employee Id: <input [(ngModel)]="currentProduct.employeeId" type="text" class="form-control" id="" placeholder="Input field" [ngModelOptions]="{standalone: true}"></p>
+        </div>
+    
+        
+    
+        <button type="submit" class="btn btn-primary"   (click)="addProduct()" >Submit</button>
+    </form>
+    <form action="" method="PUT" class="form-inline" role="form" *ngIf="isEditForm"> 
+    
+        <div class="form-group">
+            <div class="input-group">
+              <label class="sr-only" for="">Edit Product</label><br/>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Product Name:</span>
+              </div>
+              <input [(ngModel)]="currentProduct.productName" type="string" class="form-control" id="" placeholder="Input field"  [ngModelOptions]="{standalone: true}"  >
+              <div class="input-group-prepend">
+                <span class="input-group-text">Employee Id: </span>
+              </div>
+              <input [(ngModel)]="currentProduct.employeeId" type="string" class="form-control" id="" placeholder="Input field" [ngModelOptions]="{standalone: true}" >
+            </div>  
+          </div>
+    
+        
+    
+        <button type="submit" class="btn btn-primary" (click)="editCertainProduct()" >Edit Product</button>
+    </form>
+</div>
