@@ -12,13 +12,19 @@ export class AccountService {
   getAllAccount():Observable<Account[]>{
     return this.http.get<Account[]>(`${this.baseURL}`);
   }
-  addAccount(data:any):Observable<Account>{
-    return this.http.post<Account>(`${this.baseURL}`,data);
-  }
+  // addAccount(data:any):Observable<Account>{
+  //   return this.http.post<Account>(`${this.baseURL}`,data);
+  // }
   editAccount(data:any):Observable<Account>{
     return this.http.put<Account>(`${this.baseURL}`,data);
   }
   removeAccount(id:Number):Observable<Account>{
     return this.http.delete<Account>(`${this.baseURL}/${id}`);
+  }
+  getAccountByName(name:string ):Observable<Account[]>{
+    return this.http.get<Account[]>(`${this.baseURL}/${name}`,);
+  }
+  loginByAccount(data:any):Observable<Boolean>{
+    return this.http.post<Boolean>(`${this.baseURL}/login`,data);
   }
 }

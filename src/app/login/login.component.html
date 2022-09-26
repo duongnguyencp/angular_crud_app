@@ -1,24 +1,26 @@
-<div>Login</div>
-<form action="" method="POST" class="form-horizontal container" role="form">
+<form action="" method="POST" class="form-horizontal container" role="form" [formGroup]="loginForm">
     <div class="form-group ">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text"  id="basic-addon1">User name</span>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="currentAccount.Name" placeholder="Username" aria-label="Username" [ngModelOptions]="{standalone: true}"
-          aria-describedby="basic-addon1">
+        <input type="text" class="form-control" formControlName="username" placeholder="Username" aria-label="Username"
+          aria-describedby="basic-addon1" >
+          <div class="error-text" *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('email')">Email ko dung dinh dang</div>
+          <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('required')">Email la bat buoc</div>
+          <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('minlength')">Email co it nhat 4 chu cai</div>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Password</span>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="currentAccount.id" placeholder="Password" aria-label="Password" [ngModelOptions]="{standalone: true}"
-          aria-describedby="basic-addon1">
+        <input type="password" class="form-control"  formControlName="password"  placeholder="Password" aria-label="Password" 
+          aria-describedby="basic-addon1" >
       </div>
+      <div class="invalid-feedback">{{validateText}}</div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="onSubmit()">Đăng nhập</button>
+    <button type="button" class="btn btn-primary" (click)="onLogin()">Đăng nhập</button>
 </form>
-
 
 
 

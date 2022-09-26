@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     };
     this.productService.addProduct(postData).subscribe(
     );
-
+    this.listProduct.push(this.currentProduct);
   }
 
   refreshData() {

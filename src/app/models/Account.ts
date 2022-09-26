@@ -1,12 +1,12 @@
 export class Account {
     id: number;
-    Name: string;
-    Password: string;
+    name: string;
+    password: string;
     EmployeeId: number;
     constructor() {
         this.id = 0;
-        this.Name = "";
-        this.Password = "";
+        this.name = "";
+        this.password = "";
         this.EmployeeId = 0;
     }
 }
