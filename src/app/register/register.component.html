@@ -1,0 +1,52 @@
+<form action="" method="POST" class="form-horizontal container" role="form" [formGroup]="registerForm">
+    <div class="form-group has-validation">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"  id="basic-addon1">User name</span>
+        </div>
+        <input type="text" class="form-control" formControlName="username" placeholder="Username" aria-label="Username"
+          aria-describedby="basic-addon1" >
+          <div class="invalid-feedback needs-validation">
+            <div class="error-text" *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].hasError('email')">Email ko dung dinh dang</div>
+            <div *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].hasError('required')">Email la bat buoc</div>
+            <div *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].hasError('minlength')">Email co it nhat 4 chu cai</div>
+          </div>
+
+      </div>
+      <div class="input-group mb-3 has-validation">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password</span>
+        </div>
+        <input type="password" class="form-control"  formControlName="password"  placeholder="Password" aria-label="Password" 
+          aria-describedby="basic-addon1" >
+        <div class="invalid-feedback needs-validation">
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('required')"> Password la bat buoc </div>
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('hasCapitalCase')"> Password must contain at least 1 Capital case </div>
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('hasSmallCase')"> Password must contain at least 1 Small case </div>
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('hasNumber')"> Password must contain at least 1 number </div>
+        </div>
+      </div>
+      <div class="input-group mb-3 has-validation">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+        </div>
+        <input type="password" class="form-control"  formControlName="confirmPassword"  placeholder="Password" aria-label="Password" 
+          aria-describedby="basic-addon1" >
+        <div class="invalid-feedback needs-validation">
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('required')"> Password la bat buoc </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('hasCapitalCase')"> Password phai chua it nhat mot chu in Hoa </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('hasSmallCase')"> Password phai chua it nhat mot chu in thuong </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('hasNumber')"> Password phai chua it nhat mot so </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('minLength')"> Password phai chua it nhat 8 ky tu </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('NoPasswordMatch')"> Password khong trung khop </div>
+        </div>
+      </div>
+      <div class="invalid-feedback">{{validateText}}</div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onRegister()">Đăng ký</button>
+</form>
+
+
+
+
+

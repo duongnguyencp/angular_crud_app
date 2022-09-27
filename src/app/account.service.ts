@@ -27,4 +27,7 @@ export class AccountService {
   loginByAccount(data:any):Observable<Boolean>{
     return this.http.post<Boolean>(`${this.baseURL}/login`,data);
   }
+  registerAccount(data:any):Observable<Boolean>{
+    return this.http.post<Boolean>(`${this.baseURL}/register`,data);
+  }
 }

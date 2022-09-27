@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
+import { CustomValidator } from '../custom-validator';
 import { Account } from '../models/Account';
 import { Employee } from '../models/Employee';
 import { ProductsService } from '../products.service';
@@ -23,7 +24,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email, Validators.minLength(4)]],
-      password: ['', [Validators.required,  Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]]
+      password: ['', [Validators.required
+        ,CustomValidator.patternValidator(/\d/, {hasNumber:true}),
+        CustomValidator.patternValidator(/[A-Z]/,{hasCapitalCase:true}),
+        CustomValidator.patternValidator(/[a-z]/,{hasSmallCase:true}),
+        Validators.minLength(8)
+      
+      ]]
     });
     this.loginForm.valueChanges.subscribe(value=>{
       this.validateText = '';
@@ -55,6 +62,9 @@ export class LoginComponent implements OnInit {
   }
   onLogout(): void {
     localStorage.removeItem('currentUser');
+  }
+  goToRegister(): void {
+    this.routerService.navigate(['/register']);
   }
 
 }
